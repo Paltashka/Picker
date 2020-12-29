@@ -1,21 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+
+import AppNavigator from "./src/navigation/AppNavigator";
+
+import client from "./src/config/apollo";
+// const client = new ApolloClient({
+//   uri: "https://eve-admin.herokuapp.com/graphql/",
+//   cache: new InMemoryCache(),
+// });
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <ApolloProvider client={client}>
+      <AppNavigator />
       <StatusBar style="auto" />
-    </View>
+    </ApolloProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
