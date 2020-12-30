@@ -8,7 +8,8 @@ import { FULFILL_ORDER } from "../graphql/mutations";
 const GreenScreen = ({ data, navigation }) => {
   const [orderFulfill] = useMutation(FULFILL_ORDER, {
     onCompleted: (res) => {
-      console.log(res);
+      console.log("result");
+      navigation.push("Order", { data });
     },
   });
 

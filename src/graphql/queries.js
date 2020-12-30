@@ -24,6 +24,7 @@ export const GET_ORDER = gql`
           customerNote
           lines {
             productName
+            productSku
             quantity
             id
             unitPrice {

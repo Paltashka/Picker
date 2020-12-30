@@ -5,18 +5,16 @@ import {
   InMemoryCache,
   concat,
 } from "@apollo/client";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const httpLink = new HttpLink({
-  uri: "https://eve-admin.herokuapp.com/graphql/",
+  uri: "https://test.grocery-backend.io/",
 });
 
 const authMiddleware = new ApolloLink((operation, forward) => {
-  // AsyncStorage.getItem("token")
   operation.setContext({
     headers: {
       authorization:
-        "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InBhbHRhc2hrYTUwQGdtYWlsLmNvbSIsImV4cCI6MTYwOTE2OTc0MCwib3JpZ0lhdCI6MTYwOTE2OTQ0MCwidXNlcl9pZCI6IlZYTmxjam96TkE9PSIsImlzX3N0YWZmIjp0cnVlLCJpc19zdXBlcnVzZXIiOmZhbHNlfQ.vgq1BCe5vCyDzEfWDIoahOQWQnGn2Uvq32FNK-sHM-Y",
+        "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDkzMjIwODcsImV4cCI6MTYwOTMyMjM4NywidG9rZW4iOiJHeG44dzFyZjNTV00iLCJlbWFpbCI6ImhpQHBpY2tlcnkuZGUiLCJ0eXBlIjoiYWNjZXNzIiwidXNlcl9pZCI6IlZYTmxjam8zTWc9PSIsImlzX3N0YWZmIjp0cnVlfQ._wu5VOHOCLa0UVeHtdBV5IiFD38RrkKxAF4m8-lol0A",
     },
   });
 

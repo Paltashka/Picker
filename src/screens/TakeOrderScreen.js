@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Spinner } from "react-native";
+import { StyleSheet, ActivityIndicator } from "react-native";
 import { useQuery } from "@apollo/client";
 
 import { GET_ORDER } from "../graphql/queries";
@@ -9,20 +9,19 @@ import GreenScreen from "../components/GreenScreen";
 import BlackScreen from "../components/BlackScreen";
 
 const TakeOrderScreen = ({ navigation }) => {
-  const { loading, data, error } = useQuery(GET_ORDER, {
+  const { loading, data, error, refetch } = useQuery(GET_ORDER, {
     variables: {
       status: ["UNFULFILLED"],
-      first: 2,
+      first: 3,
       OrderDirection: "ASC",
       OrderSortField: "NUMBER",
     },
-    client,
   });
   useEffect(() => {
-    console.log(data);
-  }, [data]);
+    refetch();
+  }, []);
 
-  if (loading) return <Spinner />;
+  if (loading) return <ActivityIndicator size="large" />;
 
   if (data.orders.edges.length === 0)
     return <BlackScreen navigation={navigation} />;

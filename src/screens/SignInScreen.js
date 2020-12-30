@@ -17,8 +17,8 @@ const TOKEN_CREATE = gql`
 `;
 
 const SignInScreen = ({ navigation }) => {
-  const [email, setEmail] = useState("paltashka50@gmail.com");
-  const [pass, setPass] = useState("Starapps123");
+  const [email, setEmail] = useState("hi@pickery.de");
+  const [pass, setPass] = useState("lol12345");
 
   const [tokenCreate, { data }] = useMutation(TOKEN_CREATE);
 
@@ -30,10 +30,9 @@ const SignInScreen = ({ navigation }) => {
 
   useEffect(() => {
     try {
-      console.log(data.tokenCreate.token);
       if (data.tokenCreate.token) navigation.push("TakeOrder");
       AsyncStorage.setItem("token", "JWT " + data.tokenCreate.token);
-      console.log("Token created");
+      console.log(data.tokenCreate.token);
     } catch (_) {}
   }, [data]);
 
