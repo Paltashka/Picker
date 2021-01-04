@@ -13,17 +13,18 @@ const OrderScreen = ({ route, navigation }) => {
   const [orderFulfill] = useMutation(FULFILL_ORDER, {
     onCompleted: (res) => {
       console.log("result");
-      navigation.push("Picked", { data: data.node.number });
+      navigation.push("Picked", { data });
     },
   });
 
-  const sortedLines = Object.assign([], lines).sort(function (a, b) {
-    var keyA = parseInt(a.variant.metadata[0].value);
-    var keyB = parseInt(b.variant.metadata[0].value);
-    if (keyA < keyB) return -1;
-    if (keyA > keyB) return 1;
-    return 0;
-  });
+  const sortedLines = Object.assign([], lines);
+  // .sort(function (a, b) {
+  //   var keyA = parseInt(a.variant.metadata[0].value);
+  //   var keyB = parseInt(b.variant.metadata[0].value);
+  //   if (keyA < keyB) return -1;
+  //   if (keyA > keyB) return 1;
+  //   return 0;
+  // });
 
   const logOut = () => {
     navigation.navigate("SignIn");

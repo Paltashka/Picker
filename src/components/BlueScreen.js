@@ -5,7 +5,7 @@ import { useMutation } from "@apollo/client";
 
 import { FULFILL_ORDER } from "../graphql/mutations";
 
-const GreenScreen = ({ data, navigation }) => {
+const BlueScreen = ({ data, navigation }) => {
   const [orderFulfill] = useMutation(FULFILL_ORDER, {
     onCompleted: (res) => {
       console.log("result");
@@ -56,7 +56,7 @@ const GreenScreen = ({ data, navigation }) => {
     </View>
   );
 };
-export default GreenScreen;
+export default BlueScreen;
 
 const styles = StyleSheet.create({
   container: {

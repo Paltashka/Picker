@@ -3,9 +3,8 @@ import { StyleSheet, ActivityIndicator } from "react-native";
 import { useQuery } from "@apollo/client";
 
 import { GET_ORDER } from "../graphql/queries";
-import client from "../config/apollo";
 
-import GreenScreen from "../components/GreenScreen";
+import BlueScreen from "../components/BlueScreen";
 import BlackScreen from "../components/BlackScreen";
 
 const TakeOrderScreen = ({ navigation }) => {
@@ -16,6 +15,7 @@ const TakeOrderScreen = ({ navigation }) => {
       OrderDirection: "ASC",
       OrderSortField: "NUMBER",
     },
+    pollInterval: 3000,
   });
   useEffect(() => {
     refetch();
@@ -26,7 +26,7 @@ const TakeOrderScreen = ({ navigation }) => {
   if (data.orders.edges.length === 0)
     return <BlackScreen navigation={navigation} />;
 
-  return <GreenScreen data={data.orders.edges[0]} navigation={navigation} />;
+  return <BlueScreen data={data.orders.edges[0]} navigation={navigation} />;
 };
 export default TakeOrderScreen;
 
