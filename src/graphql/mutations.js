@@ -18,3 +18,15 @@ export const FULFILL_ORDER = gql`
     }
   }
 `;
+
+export const TOKEN_CREATE = gql`
+  mutation tokenCreate($email: String!, $password: String!) {
+    tokenCreate(email: $email, password: $password) {
+      token
+      errors {
+        field
+        message
+      }
+    }
+  }
+`;

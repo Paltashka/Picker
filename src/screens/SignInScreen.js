@@ -1,40 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { StyleSheet, View, Text, Dimensions } from "react-native";
-import { gql, useMutation } from "@apollo/client";
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
-const TOKEN_CREATE = gql`
-  mutation tokenCreate($email: String!, $password: String!) {
-    tokenCreate(email: $email, password: $password) {
-      token
-      errors {
-        field
-        message
-      }
-    }
-  }
-`;
+import { useAuth } from "../contexts/AuthProvider";
 
 const SignInScreen = ({ navigation }) => {
   const [email, setEmail] = useState("hi@pickery.de");
   const [pass, setPass] = useState("lol12345");
 
-  const [tokenCreate, { data }] = useMutation(TOKEN_CREATE);
+  const { signup } = useAuth();
 
   const logIn = () => {
-    tokenCreate({
-      variables: { email, password: pass },
-    });
+    signup(email, pass);
   };
-
-  useEffect(() => {
-    try {
-      if (data.tokenCreate.token) navigation.push("TakeOrder");
-      AsyncStorage.setItem("token", "JWT " + data.tokenCreate.token);
-      console.log(data.tokenCreate.token);
-    } catch (_) {}
-  }, [data]);
 
   return (
     <View style={styles.container}>
